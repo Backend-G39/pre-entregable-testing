@@ -10,7 +10,7 @@ const Student = sequelize.define('student', {
     type: DataTypes.STRING,
     allowNull: false
   },
-  bithday: {
+  birthday: {
     type: DataTypes.DATEONLY,
     allowNull: false
   },
