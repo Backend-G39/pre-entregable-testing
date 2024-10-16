@@ -1,3 +1,4 @@
+require('../models')
 const app = require('../app')
 const request = require('supertest')
 const BASE_URL = '/api/v1/students'
@@ -40,6 +41,9 @@ test("GET -> 'BASE_URL', should return statusCode 200, and res.body.length === 1
   expect(res.body).toBeDefined()
   expect(res.body).toHaveLength(1)
   expect(res.body.length).toBe(1)
+
+  expect(res.body[0].courses).toBeDefined()
+  expect(res.body[0].courses).toHaveLength(0)
 })
 
 //! test getOne
@@ -47,10 +51,16 @@ test("GET -> 'BASE_URL/:id' should return status code 200, and res.body.firstNam
   const res = await request(app)
     .get(`${BASE_URL}/${studentId}`);
 
+  console.log(res.body)
+
+
   expect(res.status).toBe(200);
   expect(res.body).toBeDefined();
   expect(res.body.firstName).toBe(students.firstName);
   expect(res.body.id).toBe(studentId);
+
+  expect(res.body.courses).toBeDefined()
+  expect(res.body.courses).toHaveLength(0)
 });
 
 

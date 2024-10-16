@@ -1,3 +1,4 @@
+require('../models')
 const request = require("supertest")
 const app = require("../app");
 
@@ -18,7 +19,7 @@ test("Post '/courses' should return status code 201 and res.body.name = course.n
 
   courseId = res.body.id
 
-  console.log(res.body)
+
 
   expect(res.status).toBe(201)
   expect(res.body).toBeDefined()
@@ -30,7 +31,7 @@ test("Get '/courses' should return a statusCode 200", async () => {
   const res = await request(app)
     .get(BASE_URL)
 
-  // console.log(res.body);
+  // console.log(res.body)
 
   expect(res.status).toBe(200)
   expect(res.body).toBeDefined()

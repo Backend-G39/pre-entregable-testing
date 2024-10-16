@@ -1,7 +1,8 @@
+const Course = require("../models/Course");
 const Student = require("../models/Student");
 
 const getAllStudents = async () => {
-  return await Student.findAll();
+  return await Student.findAll({ include: [Course] });
 }
 
 const createStudents = async (body) => {
@@ -9,7 +10,7 @@ const createStudents = async (body) => {
 }
 
 const getOneStudents = async (id) => {
-  return await Student.findByPk(id);
+  return await Student.findByPk(id, { include: [Course] });
 }
 
 const updateStudents = async (body, id) => {
