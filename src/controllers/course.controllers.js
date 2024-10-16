@@ -36,10 +36,26 @@ const update = catchError(async (req, res) => {
   return res.json(result[1][0]);
 });
 
+//a los cursos le puedo setear students
+//! /courses/:id/students
+const setStudents = catchError(async (req, res) => {
+  //obtengo id de los parametros
+  const { id } = req.params
+  //busco el curso 
+  const course = await Course.findByPk(id)
+  if (!course) return res.status(404).json({ error: "Course not found" })
+  //seteo los students y los guardo en una variable 
+  await course.setStudents(req.body)
+  const students = await course.getStudents()
+  //doy vista
+  return res.json(students)
+})
+
 module.exports = {
   getAll,
   create,
   getOne,
   remove,
-  update
+  update,
+  setStudents
 }

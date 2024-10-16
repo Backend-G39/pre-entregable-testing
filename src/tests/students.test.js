@@ -51,7 +51,7 @@ test("GET -> 'BASE_URL/:id' should return status code 200, and res.body.firstNam
   const res = await request(app)
     .get(`${BASE_URL}/${studentId}`);
 
-  console.log(res.body)
+  // console.log(res.body)
 
 
   expect(res.status).toBe(200);
